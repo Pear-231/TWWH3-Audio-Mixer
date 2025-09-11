@@ -1,8 +1,13 @@
-local function init()
-    ammf.trigger_action_event(ammf.VANILLA_MUSIC_PAUSE_ACTION_EVENT)
-    ammf.trigger_action_event("Play_music_campaign_test")
+local function play_campaign_music()
+    -- This should? play music according to the local faction unless audio is triggered globally for some reason.
+    local local_player_faction_key = cm:get_local_faction(true)
+    local action_event = ammf.get_campaign_faction_action_event(local_player_faction_key)
+    if action_event ~= nil then
+        ammf.pause_vanilla_music()
+        ammf.trigger_action_event(action_event)
+    end
 end
 
 if core:is_campaign() then
-    init()
+    play_campaign_music()
 end

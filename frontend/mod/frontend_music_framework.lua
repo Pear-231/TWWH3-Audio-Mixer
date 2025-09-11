@@ -144,8 +144,8 @@ local vanilla_music_frontend_themes = {
 }
 
 local function pause_vanilla_music(theme_display_name)
-    ammf.log("Pausing vanilla music for theme: " ..theme_display_name .." with Action Event: " ..ammf.VANILLA_MUSIC_PAUSE_ACTION_EVENT)
-    ammf.trigger_action_event(vanilla_music_pause_action_event)
+    ammf.log("Pausing vanilla music for theme: " ..theme_display_name)
+    ammf.pause_vanilla_music()
 end
 
 local function stop_modded_music(action_event, theme_display_name)
@@ -160,7 +160,7 @@ local function play_modded_music(action_event, theme_display_name)
         timer_manager:remove_callback("play_modded_music")
     end
 
-    -- Wait 1 second (the duration for vanilla and modded music to fade out) before playing the music
+    -- Wait 1 second (the duration for vanilla and modded music to fade out) before playing the music.
     timer_manager:callback(function() play_modded_music_callback() end, 1000, "play_modded_music")
 end
 
@@ -207,7 +207,7 @@ function on_theme_changed()
 end
 
 function on_theme_initialised()
-    -- The whole frontend is always visible but covered by "cover_until_intro_movies_finish" while the intro movies play, so we play music once it's not visible
+    -- The whole frontend is always visible but covered by "cover_until_intro_movies_finish" while the intro movies play, so we play music once it's not visible.
     local frontend_cover = find_uicomponent(core:get_ui_root(), "cover_until_intro_movies_finish")
     local is_frontend_cover_visible = frontend_cover and frontend_cover:Visible()
     if not is_frontend_cover_visible then
@@ -221,7 +221,7 @@ function on_theme_initialised()
 
         local initial_theme_has_modded_music = initial_theme ~= nil
 
-        -- The initial theme has modded music
+        -- The initial theme has modded music.
         if initial_theme_has_modded_music then
             pause_vanilla_music(initial_theme_display_name)
             play_modded_music(initial_theme.play_action_event, initial_theme_display_name)

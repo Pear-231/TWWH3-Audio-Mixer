@@ -130,7 +130,8 @@
   			"timer_manager",
 			"find_uicomponent",
 			"frontend_themes",
-			"out"
+			"out",
+			"bm"
 		]
   	}
 }
