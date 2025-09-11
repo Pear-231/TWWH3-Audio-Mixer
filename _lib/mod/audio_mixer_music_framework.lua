@@ -1,13 +1,31 @@
--- ============================================================================
 -- Audio Mixer Music Framework API
--- ============================================================================
 -- This script implements the Audio Mixer Music Framework API.
 -- It allows mod authors to manage modded music for frontend, campaign, and battle.
 -- Examples of how the API is used can be found in the frontend, campaign, and battle framework scripts.
--- ============================================================================
 
-ammf_api = {}
+ammf = {}
 local frontend_themes = {}  
+
+-- We use pause to stop vanilla music because stop just immediately restarts it due to the way it's hardcoded
+ammf.VANILLA_MUSIC_PAUSE_ACTION_EVENT = "Global_Music_Pause"
+
+-- General API Functions:
+
+--- @function trigger_action_event
+--- @desc Triggers an Action Event by its name. 
+--- Logs an error if the argument is not a non-empty string.
+--- @param action_event string - The name of the Action Event to trigger.
+function ammf.trigger_action_event(action_event)
+    if type(action_event) ~= "string" or action_event == "" then
+        ammf.log_error("'action_event' must be a non-empty string. Cannot trigger Action Event.")
+        return
+    end
+
+    ammf.log_error("Triggering Action Event: " ..action_event)
+    common.trigger_soundevent(action_event)
+end
+
+-- Frontend Functions:
 
 ---@class FrontendTheme
 ---@field theme_display_name string
@@ -40,37 +58,37 @@ function FrontendTheme:update(play_action_event, stop_action_event)
     self.stop_action_event = stop_action_event or self.stop_action_event
 end
 
---- @function set_frontend_theme
---- @desc Registers a new theme or updates an existing one.
+--- @function add_frontend_theme
+--- @desc Adds a new theme or updates an existing one.
 --- @param theme_display_name string - The unique display name of the theme.
 --- @param play_action_event string - The event to trigger playing the theme.
 --- @param stop_action_event string - The event to trigger stopping the theme.
---- @return boolean true on success, false on failure.
-function ammf_api.set_frontend_theme(theme_display_name, play_action_event, stop_action_event)
+--- @return boolean true if success, false if failure.
+function ammf.add_frontend_theme(theme_display_name, play_action_event, stop_action_event)
     if type(theme_display_name) ~= "string" or theme_display_name == "" then
-        ammf_api.log("Error: 'theme_display_name' must be a non-empty string.")
+        ammf.log_error("'theme_display_name' must be a non-empty string.")
         return false
     end
 
     if type(play_action_event) ~= "string" or play_action_event == "" then
-        ammf_api.log("Error: 'play_action_event' must be a non-empty string.")
+        ammf.log_error("'play_action_event' must be a non-empty string.")
         return false
     end
 
     if type(stop_action_event) ~= "string" or stop_action_event == "" then
-        ammf_api.log("Error: 'stop_action_event' must be a non-empty string.")
+        ammf.log_error("'stop_action_event' must be a non-empty string.")
         return false
     end
 
     local theme = frontend_themes[theme_display_name]
     if theme then
         theme:update(play_action_event, stop_action_event)
-        ammf_api.log("Updated theme: " .. theme_display_name .. " with play_action_event: " .. play_action_event .. " and stop_action_event: " .. stop_action_event)
+        ammf.log_error("Updated theme: " ..theme_display_name .." with play_action_event: " ..play_action_event .." and stop_action_event: " ..stop_action_event)
         return true
     else
         local new_theme = FrontendTheme:new(theme_display_name, play_action_event, stop_action_event)
         frontend_themes[theme_display_name] = new_theme
-        ammf_api.log("Registered new theme: " .. theme_display_name .. " with play_action_event: " .. play_action_event .. " and stop_action_event: " .. stop_action_event)
+        ammf.log("Registered new theme: " ..theme_display_name .." with play_action_event: " ..play_action_event .." and stop_action_event: " ..stop_action_event)
         return true
     end
 end
@@ -79,18 +97,18 @@ end
 --- @desc Removes a theme from the frontend music framework with type validation.
 --- @param theme_display_name string - The unique display name of the theme.
 --- @return boolean true if removal was successful, false otherwise.
-function ammf_api.remove_frontend_theme(theme_display_name)
+function ammf.remove_frontend_theme(theme_display_name)
     if type(theme_display_name) ~= "string" or theme_display_name == "" then
-        ammf_api.log("Error: 'theme_display_name' must be a non-empty string. Cannot remove theme.")
+        ammf.log_error("theme_display_name' must be a non-empty string. Cannot remove theme.")
         return false
     end
 
     if frontend_themes[theme_display_name] then
         frontend_themes[theme_display_name] = nil
-        ammf_api.log("Removed theme: " .. theme_display_name)
+        ammf.log("Removed theme: " ..theme_display_name)
         return true
     else
-        ammf_api.log("Error: Theme '" .. theme_display_name .. "' not found. Cannot remove.")
+        ammf.log_error("Theme '" ..theme_display_name .."' not found. Cannot remove.")
         return false
     end
 end
@@ -99,25 +117,32 @@ end
 --- @desc Gets a registered theme by its display name with type validation.
 --- @param theme_display_name string - The unique display name of the theme.
 --- @return FrontendTheme|nil The theme object if found, nil otherwise.
-function ammf_api.get_frontend_theme(theme_display_name)
+function ammf.get_frontend_theme(theme_display_name)
     if type(theme_display_name) ~= "string" or theme_display_name == "" then
-        ammf_api.log("Error: 'theme_display_name' must be a non-empty string. Cannot get theme.")
+        ammf.log_error("'theme_display_name' must be a non-empty string. Cannot get theme.")
         return nil
     end
 
     return frontend_themes[theme_display_name]
 end
 
+-- Logging Functions:
+
 --- @function log
 --- @desc Logs a message to the game log.
 --- @param text string - The message to log.
-function ammf_api.log(text)
+--- @param extra_prefix string|nil - Optional additional prefix to prepend after the main prefix.
+function ammf.log(text, extra_prefix)
     if type(text) ~= "string" then
-        ammf_api.log("Error: 'text' must be a string.")
-        return nil
+        ammf.log_error("'text' must be a string.")
     end
 
-    local prefix = "Audio Mixer Music Framework" .. ": "
+    local prefix = "Audio Mixer Music Framework" ..": "
+
+    -- add optional secondary prefix if provided
+    if extra_prefix and extra_prefix ~= "" then
+        prefix = prefix ..extra_prefix
+    end
 
     local out_message
     if text ~= "" then
@@ -129,4 +154,11 @@ function ammf_api.log(text)
     if out_message ~= "\n" then
         out(out_message)
     end
+end
+
+--- @function log_error
+--- @desc Logs an error message with the "Error:" prefix.
+--- @param text string - The error message to log.
+function ammf.log_error(text)
+    ammf.log(text, "Error: ")
 end
