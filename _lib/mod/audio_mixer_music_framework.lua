@@ -1,6 +1,5 @@
 -- Audio Mixer Music Framework API
--- This script implements the Audio Mixer Music Framework API.
--- It allows mod authors to manage modded music for frontend, campaign, and battle.
+-- The API allows mod authors to manage modded music for frontend, campaign, and battle.
 -- Examples of how the API is used can be found in the frontend, campaign, and battle framework scripts.
 
 -- API:
@@ -9,7 +8,7 @@ ammf = {}
 
 -- Contants:
 
--- We use pause to stop vanilla music because stop just immediately restarts it due to the way it's hardcoded
+-- We use Global_Music_Pause to stop vanilla music because Global_Music_Stop just immediately restarts it due to the way it's hardcoded
 ammf.VANILLA_MUSIC_PAUSE_ACTION_EVENT = "Global_Music_Pause"
 
 -- General Functions:
@@ -24,12 +23,12 @@ function ammf.trigger_action_event(action_event)
         return false
     end
 
-    ammf.log_error("Triggering Action Event: " ..action_event)
+    ammf.log("Triggering Action Event: " ..action_event)
     common.trigger_soundevent(action_event)
     return true
 end
 
---- @function : pause_vanilla_music.
+--- @function : pause_vanilla_music
 --- @desc : Pauses the vanilla music. 
 function ammf.pause_vanilla_music()
     ammf.trigger_action_event(ammf.VANILLA_MUSIC_PAUSE_ACTION_EVENT)

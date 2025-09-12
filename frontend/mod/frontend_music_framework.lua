@@ -1,15 +1,10 @@
--- Frontend Framework
--- This script implements the frontend framework of the Audio Mixer Music Framework API. 
--- It allows mod authors to manage modded music for the frontend, campaign, and battle. 
--- An example of how it's used can be found in the frontend_music_framework.lua file.
-
 local previous_theme_display_name
 
--- The Audio Mixer contains these events remade from the vanilla sounds.
--- This is needed as sometimes if vanilla music is paused and the game later closed, strangely the next time the game is launched 
--- the vanilla music doesn't play until the Global_Music_Play event is triggered again which causes problems as we can't tell if 
--- it's playing or not so to trigger Global_Music_Play if it's already playing would play the music again which could mean 
--- multiple music tracks playing at the same time which we don't want...
+-- The Audio Mixer contains these events remade from the vanilla sounds. This is needed as sometimes if vanilla music 
+-- is paused and the game later closed, strangely the next time the game is launched the vanilla music doesn't play 
+-- until the Global_Music_Play event is triggered again which causes problems as we can't tell if it's playing or not 
+-- so to trigger Global_Music_Play if it's already playing would play the music again which could mean multiple 
+-- music tracks playing at the same time which we don't want!
 local vanilla_music_frontend_themes = {
     {
         theme_display_name = "Total War: Warhammer I",
@@ -157,11 +152,11 @@ local function play_modded_music(action_event, theme_display_name)
     local function play_modded_music_callback()
         ammf.log("Playing modded music for theme: " ..theme_display_name .." with Action Event: " ..action_event)
         ammf.trigger_action_event(action_event)
-        timer_manager:remove_callback("play_modded_music")
+        timer_manager:remove_callback("ammf_play_frontend_modded_music_callback")
     end
 
-    -- Wait 1 second (the duration for vanilla and modded music to fade out) before playing the music.
-    timer_manager:callback(function() play_modded_music_callback() end, 1000, "play_modded_music")
+    -- The duration between music tracks playing for vanilla frontend themes is 1 second so we set the callback to 1 second.
+    timer_manager:callback(function() play_modded_music_callback() end, 1000, "ammf_play_frontend_modded_music_callback")
 end
 
 local function get_current_theme_display_name()
@@ -207,7 +202,8 @@ function on_theme_changed()
 end
 
 function on_theme_initialised()
-    -- The whole frontend is always visible but covered by "cover_until_intro_movies_finish" while the intro movies play, so we play music once it's not visible.
+    -- The whole frontend is always visible but covered by "cover_until_intro_movies_finish" 
+    -- while the intro movies play, so we play music once it's no longer visible.
     local frontend_cover = find_uicomponent(core:get_ui_root(), "cover_until_intro_movies_finish")
     local is_frontend_cover_visible = frontend_cover and frontend_cover:Visible()
     if not is_frontend_cover_visible then
@@ -218,10 +214,7 @@ function on_theme_initialised()
         save_previous_theme_display_name(initial_theme_display_name)
 
         local initial_theme = validate_theme(ammf.get_frontend_theme(initial_theme_display_name))
-
         local initial_theme_has_modded_music = initial_theme ~= nil
-
-        -- The initial theme has modded music.
         if initial_theme_has_modded_music then
             pause_vanilla_music(initial_theme_display_name)
             play_modded_music(initial_theme.play_action_event, initial_theme_display_name)

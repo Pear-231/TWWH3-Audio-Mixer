@@ -1,13 +1,18 @@
 local function play_campaign_music()
+    timer_manager:remove_callback("ammf_play_campaign_music_callback")
+
     -- This should? play music according to the local faction unless audio is triggered globally for some reason.
     local local_player_faction_key = cm:get_local_faction(true)
     local action_event = ammf.get_campaign_faction_action_event(local_player_faction_key)
     if action_event ~= nil then
         ammf.pause_vanilla_music()
-        ammf.trigger_action_event(action_event)
+
+        ammf.log("Playing campaign music for faction: " ..local_player_faction_key)
+        ammf.trigger_action_event(local_player_faction_key)
     end
 end
 
 if core:is_campaign() then
-    play_campaign_music()
+    -- Wait for mods to add entries to campaign_faction_music.
+    timer_manager:callback(function() play_campaign_music() end, 1000, "ammf_play_campaign_music_callback")
 end
