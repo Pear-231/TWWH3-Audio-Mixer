@@ -38,7 +38,7 @@ end
 
 -- The storage for frontend themes.
 -- Type: Dictionary<string theme_display_name, FrontendTheme frontend_theme>
-local frontend_themes = {}  
+local frontend_theme_music = {}  
 
 ---@class FrontendTheme
 ---@field theme_display_name string
@@ -93,14 +93,14 @@ function ammf.add_frontend_theme(theme_display_name, play_action_event, stop_act
         return false
     end
 
-    local theme = frontend_themes[theme_display_name]
+    local theme = frontend_theme_music[theme_display_name]
     if theme then
         theme:update(play_action_event, stop_action_event)
         ammf.log("Updated theme: " ..theme_display_name .." with play_action_event: " ..play_action_event .." and stop_action_event: " ..stop_action_event)
         return true
     else
         local new_theme = FrontendTheme:new(theme_display_name, play_action_event, stop_action_event)
-        frontend_themes[theme_display_name] = new_theme
+        frontend_theme_music[theme_display_name] = new_theme
         ammf.log("Registered new theme: " ..theme_display_name .." with play_action_event: " ..play_action_event .." and stop_action_event: " ..stop_action_event)
         return true
     end
@@ -116,8 +116,8 @@ function ammf.remove_frontend_theme(theme_display_name)
         return false
     end
 
-    if frontend_themes[theme_display_name] then
-        frontend_themes[theme_display_name] = nil
+    if frontend_theme_music[theme_display_name] then
+        frontend_theme_music[theme_display_name] = nil
         ammf.log("Removed theme: " ..theme_display_name)
         return true
     else
@@ -136,7 +136,7 @@ function ammf.get_frontend_theme(theme_display_name)
         return nil
     end
 
-    return frontend_themes[theme_display_name]
+    return frontend_theme_music[theme_display_name]
 end
 
 -- Campaign Music Framework Functions:

@@ -8,11 +8,11 @@ local function play_campaign_music()
         ammf.pause_vanilla_music()
 
         ammf.log("Playing campaign music for faction: " ..local_player_faction_key)
-        ammf.trigger_action_event(local_player_faction_key)
+        ammf.trigger_action_event(action_event)
     end
 end
 
 if core:is_campaign() then
-    -- Wait for mods to add entries to campaign_faction_music.
+    -- Wait for mods to add campaign music.
     timer_manager:callback(function() play_campaign_music() end, 1000, "ammf_play_campaign_music_callback")
 end

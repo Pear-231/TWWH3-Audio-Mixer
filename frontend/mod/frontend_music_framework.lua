@@ -178,7 +178,7 @@ local function validate_theme(theme)
     end
 end
 
-function on_theme_changed()
+function on_frontend_theme_changed()
     local current_theme_display_name = get_current_theme_display_name()
 
     ammf.log("Handling music for theme change from: " ..previous_theme_display_name .." to: " ..current_theme_display_name)
@@ -224,14 +224,16 @@ function on_theme_initialised()
     end  
 end
 
-local function register_vanilla_music_frontend_themes()
+local function add_vanilla_music_frontend_themes()
     for _, theme in ipairs(vanilla_music_frontend_themes) do
         ammf.add_frontend_theme(theme.theme_display_name, theme.play_action_event, theme.stop_action_event)
     end
 end
 
 local function init()
-    register_vanilla_music_frontend_themes()
+    timer_manager:remove_callback("ammf_init_frontend_music_callback")
+
+    add_vanilla_music_frontend_themes()
     
     timer_manager:repeat_callback(
         function()
@@ -246,12 +248,13 @@ local function init()
         "ComponentLClickUp",
         function(context) return context.string == "button_next_theme" or context.string == "button_prev_theme" end,
         function()
-            on_theme_changed()
+            on_frontend_theme_changed()
         end,
         true
     );
 end
 
 if core:is_frontend() then
-    core:add_ui_created_callback(init)
+    -- Wait for mods to add frontend music.
+    core:add_ui_created_callback(function() init() end, 1000, "ammf_init_frontend_music_callback")
 end

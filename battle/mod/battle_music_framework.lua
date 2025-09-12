@@ -9,11 +9,11 @@ local function play_battle_music()
         ammf.pause_vanilla_music()
         
         ammf.log("Playing battle music for faction: " ..local_player_faction_key)
-        ammf.trigger_action_event(local_player_faction_key)
+        ammf.trigger_action_event(action_event)
     end
 end
 
 if core:is_battle() then
-    -- Wait for mods to add entries to battle_faction_music.
+    -- Wait for mods to add battle music.
     timer_manager:callback(function() play_battle_music() end, 1000, "ammf_play_battle_music_callback")
 end
