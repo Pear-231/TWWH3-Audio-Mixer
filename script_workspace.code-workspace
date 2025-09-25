@@ -131,7 +131,9 @@
 			"find_uicomponent",
 			"frontend_themes",
 			"out",
-			"bm"
+			"bm",
+			"tm",
+			"set_object_class"
 		]
   	}
 }
