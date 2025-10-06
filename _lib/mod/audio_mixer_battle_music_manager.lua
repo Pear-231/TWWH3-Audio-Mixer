@@ -97,6 +97,15 @@ local function on_esc_menu_opened()
     end
 end
 
+local function on_battle_complete()
+    local faction_music = get_faction_music()
+    if faction_music ~= nil then    
+        -- Vanilla battle music plays again when you complete a battle so we pause it
+        audio_mixer_music_manager.battle:log("battle complete, pausing vanilla music")
+        pause_vanilla_music()
+    end
+end
+
 local function add_listeners()
     core:add_listener(
         "ambmm_esc_menu_closed_listener",
@@ -117,6 +126,15 @@ local function add_listeners()
         on_esc_menu_opened,
         true
     );
+
+    core:add_listener(
+        "ambmm_battle_completed_listener",
+        "ScriptEventBattlePhaseChanged",
+        function(context)
+            return context.string == "Complete"
+        end,
+        on_battle_complete
+    )
 end
 
 -------------------------------------------------------------------------------
