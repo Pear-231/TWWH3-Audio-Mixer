@@ -5,9 +5,27 @@
 		}
 	],
 	"settings": {
-		"files.exclude": {
-      	"**/.vscode": true
-    	},
+		"Lua.workspace.library": [
+			"C:/Users/george/AppData/Roaming/FrodoWazEre/rpfm/config/tw_autogen/output/wh3/global/",
+			"C:/Users/george/AppData/Roaming/FrodoWazEre/rpfm/config/tw_autogen/output/wh3/campaign/",
+			"C:/Users/george/AppData/Roaming/FrodoWazEre/rpfm/config/tw_autogen/output/wh3/frontend/",
+			"C:/Users/george/AppData/Roaming/FrodoWazEre/rpfm/config/tw_autogen/output/wh3/battle/"
+		],
+		"Lua.runtime.version": "Lua 5.1",
+		"Lua.completion.autoRequire": false,
+		"Lua.hint.setType": true,
+		"Lua.workspace.preloadFileSize": 1500,
+		"Lua.workspace.ignoreSubmodules": false,
+		"Lua.workspace.ignoreDir": [
+			".vscode",
+			".git"
+		],
+		"Lua.diagnostics.workspaceDelay": 500,
+		"Lua.diagnostics.workspaceRate": 30,
+		"Lua.diagnostics.disable": [
+			"lowercase-global",
+			"trailing-space"
+		],
 		"Lua.diagnostics.globals": [
 			"common",
 			"add_new_objective",

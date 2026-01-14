@@ -1,8 +1,0 @@
-{
-  "Lua.workspace.library": [
-    "${env:USERPROFILE}/Documents/My Documents/Modding/Tools/tw_autogen/output/wh3/global/",
-    "${env:USERPROFILE}/Documents/My Documents/Modding/Tools/tw_autogen/output/wh3/campaign/",
-    "${env:USERPROFILE}/Documents/My Documents/Modding/Tools/tw_autogen/output/wh3/frontend/",
-    "${env:USERPROFILE}/Documents/My Documents/Modding/Tools/tw_autogen/output/wh3/battle/"
-  ]
-}

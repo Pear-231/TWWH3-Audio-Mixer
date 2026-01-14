@@ -19,10 +19,10 @@
 
 -- The recommended settings for a frontend music Action Event to replicate the vanilla system are:
 -- Audio Files: Two audio files, the first one the theme music, the second one the silent vanilla track.
--- Playlist Type = Sequence 
+-- Container Type = Sequence 
 -- Playlist End Behaviour = Restart
--- Playlist Mode = Continuous
--- Always Reset Playlist = True
+-- Play Mode = Continuous
+-- Always Reset Container = True
 -- Looping Type = Infinite Looping
 -- Transition Type = Delay
 -- Transition Duration = 1

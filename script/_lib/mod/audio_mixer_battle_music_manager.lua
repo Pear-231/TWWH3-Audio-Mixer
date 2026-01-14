@@ -17,9 +17,10 @@
 
 -- The recommended settings for a battle music Action Event are:
 -- Audio Files: All the music files you want to use in the playlist. 
--- Playlist Type = Random Exhaustive
+-- Container Type = Random
+-- Random Type = Shuffle
 -- Repetition Interval = False
--- Playlist Mode = Continuous
+-- Play Mode = Continuous
 -- Looping Type = Infinite Looping
 -- Transition Type = Delay
 -- Transition Duration = 1
@@ -133,7 +134,8 @@ local function add_listeners()
         function(context)
             return context.string == "Complete"
         end,
-        on_battle_complete
+        on_battle_complete,
+        true
     )
 end
 
