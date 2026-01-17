@@ -38,32 +38,32 @@ local vanilla_frontend_theme_music = {
     -- default_theme is used as a backup where there isn't a theme assigned or all others are overwritten
     ["default_theme"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
 
-    ["Total War: Warhammer I"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – Blood for the Blood God"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – Call of the Beastmen"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – The Grim & The Grave"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – The King & The Warlord"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – Realm of the Wood Elves"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – Bretonnia"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer I – Norsca"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
-    ["Total War: Warhammer II"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – Tomb Kings"] = { play_action_event = "Play_music_frontend_vanilla_tomb_kings_theme" },
-    ["Total War: Warhammer II – The Queen & The Crone"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – Vampire Coast"] = { play_action_event = "Play_music_frontend_vanilla_vampire_coast_theme" },
-    ["Total War: Warhammer II – The Prophet & The Warlock"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – The Hunter & The Beast"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – The Shadow & The Blade"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – The Warden & The Paunch"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – The Twisted & The Twilight"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – Rakarth"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer II – The Silence & The Fury"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
-    ["Total War: Warhammer III"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
-    ["Total War: Warhammer III – Champions of Chaos"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
-    ["Total War: Warhammer III – Mirror of Madness"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
-    ["Total War: Warhammer III – Forge of the Chaos Dwarfs"] = { play_action_event = "Play_music_frontend_vanilla_chaos_dwarfs_theme" },
-    ["Total War: Warhammer III – Shadows of Change"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
-    ["Total War: Warhammer III – Thrones of Decay"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
-    ["Total War: Warhammer III – Omens of Destruction"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" }
+    ["Total War: WARHAMMER I"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – Blood for the Blood God"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – Call of the Beastmen"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – The Grim & The Grave"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – The King & The Warlord"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – Realm of the Wood Elves"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – Bretonnia"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER I – Norsca"] = { play_action_event = "Play_music_frontend_vanilla_wh1_theme" },
+    ["Total War: WARHAMMER II"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – Tomb Kings"] = { play_action_event = "Play_music_frontend_vanilla_tomb_kings_theme" },
+    ["Total War: WARHAMMER II – The Queen & The Crone"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – Vampire Coast"] = { play_action_event = "Play_music_frontend_vanilla_vampire_coast_theme" },
+    ["Total War: WARHAMMER II – The Prophet & The Warlock"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – The Hunter & The Beast"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – The Shadow & The Blade"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – The Warden & The Paunch"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – The Twisted & The Twilight"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – Rakarth"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER II – The Silence & The Fury"] = { play_action_event = "Play_music_frontend_vanilla_wh2_theme" },
+    ["Total War: WARHAMMER III"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
+    ["Total War: WARHAMMER III – Champions of Chaos"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
+    ["Total War: WARHAMMER III – Mirror of Madness"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
+    ["Total War: WARHAMMER III – Forge of the Chaos Dwarfs"] = { play_action_event = "Play_music_frontend_vanilla_chaos_dwarfs_theme" },
+    ["Total War: WARHAMMER III – Shadows of Change"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
+    ["Total War: WARHAMMER III – Thrones of Decay"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" },
+    ["Total War: WARHAMMER III – Omens of Destruction"] = { play_action_event = "Play_music_frontend_vanilla_wh3_theme" }
 }
 
 local function get_theme_display_name()
@@ -98,7 +98,7 @@ local function pause_vanilla_music(theme_display_name)
     audio_mixer_music_manager:pause_vanilla_music()
 end
 
-local function play_modded_music(action_event, theme_display_name, is_initial_theme)
+local function play_modded_music(action_event, theme_display_name)
     cancel_pending_play_modded_music()
 
     local function play_modded_music_callback()
@@ -142,7 +142,7 @@ local function play_music(current_theme_display_name)
         -- Vanilla music plays when the theme is changed so we pause it then stop our music for the previous theme and play it for the current one
         pause_vanilla_music(current_theme_display_name)
         stop_modded_music(previous_theme_music.stop_action_event, previous_theme_display_name)
-        play_modded_music(current_theme_music.play_action_event, current_theme_display_name, false)
+        play_modded_music(current_theme_music.play_action_event, current_theme_display_name)
 
         save_theme_in_svr(current_theme_display_name)
     end
@@ -152,17 +152,18 @@ local function play_music_for_initial_theme(initial_theme_display_name)
     audio_mixer_music_manager.frontend:log("Initial frontend theme " ..initial_theme_display_name .." is visible.")
     local initial_theme_music = audio_mixer_music_manager.frontend:get_music(initial_theme_display_name)
     if initial_theme_music == nil then
+        audio_mixer_music_manager.frontend:log_error("Initial theme music is nil. Using default theme music.")
         initial_theme_music = get_default_theme_music()
     end
 
     if initial_theme_music == nil then
-        audio_mixer_music_manager.frontend:log_error("Initial theme music is nil. Cannot handle theme music.")
+        audio_mixer_music_manager.frontend:log_error("Initial theme music is still nil. Cannot handle theme music.")
         return
     end
 
     -- Vanilla music plays when the theme is initialised so we pause it then play our music
     pause_vanilla_music(initial_theme_display_name)
-    play_modded_music(initial_theme_music.play_action_event, initial_theme_display_name, true)
+    play_modded_music(initial_theme_music.play_action_event, initial_theme_display_name)
 
     audio_mixer_music_manager.frontend.saved_previous_theme_display_name = initial_theme_display_name
     save_theme_in_svr(initial_theme_display_name)
