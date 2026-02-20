@@ -17,12 +17,11 @@
 -------------------------------------------------------------------------------
 
 --- @class AudioMixerMusicManager
---- @field battle AudioMixerBattleMusicManager|nil
 --- @field frontend AudioMixerFrontendMusicManager|nil
 --- @field campaign AudioMixerCampaignMusicManager|nil
+--- @field battle AudioMixerBattleMusicManager|nil
 --- @field vanilla_music_stop_action_event string
 --- @field vanilla_music_pause_action_event string
---- @field vanilla_music_resume_action_event string
 audio_mixer_music_manager = {
     frontend = nil,
     campaign = nil,
